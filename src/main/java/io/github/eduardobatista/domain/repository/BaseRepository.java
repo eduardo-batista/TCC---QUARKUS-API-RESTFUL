@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 
-import io.github.eduardobatista.rest.graph.control.SessionFactoryProducer;
+import io.github.eduardobatista.rest.database.graph.SessionFactoryProducer;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
