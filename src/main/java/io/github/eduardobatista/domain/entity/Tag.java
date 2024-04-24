@@ -27,4 +27,8 @@ public class Tag extends BaseEntity{
     @JsonbTransient
     @Relationship(type = "TAGGED_BY", direction = Direction.INCOMING)
     private Collection<RecipeBook> listRecipeBooks;
+
+    public Tag(String label) {
+        this.label = label;
+    }
 }
