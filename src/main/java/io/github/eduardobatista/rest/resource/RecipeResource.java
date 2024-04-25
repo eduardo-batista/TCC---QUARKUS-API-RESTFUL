@@ -2,6 +2,7 @@ package io.github.eduardobatista.rest.resource;
 
 import io.github.eduardobatista.domain.entity.Recipe;
 import io.github.eduardobatista.rest.service.RecipeService;
+import jakarta.json.JsonObject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -35,10 +36,14 @@ public class RecipeResource extends BaseResource<Recipe, RecipeService> {
         return Response.ok(service.loadAllBy(userId)).build();
     }
 
-    @POST
     @Override
     public Response save(@PathParam("userId") Long userId, Recipe object) {
         return Response.ok(service.save(userId, object)).build();
+    }
+    
+    @POST
+    public Response save(@PathParam("userId") Long userId, JsonObject object) {
+        return Response.ok(service.save(userId, Recipe.fromJson(object))).build();
     }
 
     @Override

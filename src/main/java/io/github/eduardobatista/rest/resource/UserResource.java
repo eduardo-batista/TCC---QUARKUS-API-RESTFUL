@@ -4,8 +4,10 @@ import io.github.eduardobatista.domain.entity.User;
 import io.github.eduardobatista.rest.service.UserService;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.Response;
 
 @Path("/users")
@@ -32,6 +34,12 @@ public class UserResource extends BaseResource<User, UserService> {
     @POST
     public Response save(User object) {
         return Response.ok(service.save(object)).build();
+    }
+
+    @PUT
+    @Path("/{id}/likes")
+    public Response likes(@PathParam("id") Long id, @QueryParam("recipeId") Long recipeId){
+        return Response.ok(service.likes(id, recipeId)).build();
     }
 
     @Override

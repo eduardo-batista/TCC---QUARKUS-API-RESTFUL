@@ -8,13 +8,20 @@ import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
 import org.neo4j.ogm.annotation.Relationship.Direction;
 
+import io.github.eduardobatista.domain.repository.TagRepository;
+import jakarta.json.JsonNumber;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonValue;
+import jakarta.json.JsonValue.ValueType;
 import jakarta.json.bind.annotation.JsonbTransient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @NodeEntity("recipe")
 public class Recipe extends BaseEntity {
@@ -39,6 +46,9 @@ public class Recipe extends BaseEntity {
 
     @Relationship(type = "TAGGED_BY", direction = Direction.OUTGOING)
     private Collection<Tag> listTags;
+    
+    @Relationship(type = "LIKED_BY", direction = Direction.OUTGOING)
+    private Collection<User> listlikers;
 
     public Collection<RecipeBook> getListRecipeBooks() {
         if (this.listRecipeBooks == null)
@@ -46,13 +56,32 @@ public class Recipe extends BaseEntity {
         return listRecipeBooks;
     }
 
-    public Recipe(String name, String description, String ingredients, String instructions, String image) {
+    public Collection<Tag> getListTags() {
+        if (this.listTags == null)
+            this.listTags = new ArrayList<Tag>();
+        return listTags;
+    }
+
+    public Recipe(String name, String description, String ingredients, String instructions, String image,
+            Collection<Tag> listTags) {
         super();
         this.name = name;
         this.description = description;
         this.ingredients = ingredients;
         this.instructions = instructions;
         this.image = image;
+        getListTags().addAll(listTags);
     }
 
+    public static Recipe fromJson(JsonObject object) {
+        TagRepository tagRepository = new TagRepository();
+        Collection<Tag> listTags = new ArrayList<Tag>();
+        for (JsonValue tag : object.getJsonArray("listTags")) {
+            if (tag.getValueType() == ValueType.NUMBER) {
+                listTags.add(tagRepository.load(((JsonNumber) tag).longValue()));
+            }
+        }
+        return new Recipe(object.getString("name"), object.getString("description"), object.getString("ingredients"),
+                object.getString("instructions"), object.containsKey("image")?object.getString("image"):null, listTags);
+    }
 }

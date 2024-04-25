@@ -51,6 +51,9 @@ public class User extends BaseEntity {
     @Relationship(type = "FOLLOWED_BY", direction = Direction.OUTGOING)
     private Collection<Follow> listFolloweds;
 
+    @Relationship(type = "LIKED_BY", direction = Direction.INCOMING)
+    private Collection<Recipe> listLikes;
+
     public Collection<Recipe> getListRecipes() {
         if (this.listRecipes == null)
             this.listRecipes = new ArrayList<>();
@@ -86,6 +89,12 @@ public class User extends BaseEntity {
         if (this.listFolloweds == null)
             this.listFolloweds = new ArrayList<>();
         return listFolloweds;
+    }
+    
+    public Collection<Recipe> getListLikes() {
+        if (this.listLikes == null)
+            this.listLikes = new ArrayList<>();
+        return listLikes;
     }
 
     @Override

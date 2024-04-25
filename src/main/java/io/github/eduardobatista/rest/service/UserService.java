@@ -26,6 +26,10 @@ public class UserService extends BaseService<User, UserResponse, UserRepository>
         return new UserResponse(repository.save(null, object));
     }
 
+    public UserResponse likes(Long id, Long recipeId) {
+        return new UserResponse(repository.likes(id, recipeId));
+    }
+
     @Override
     public Collection<UserResponse> loadAllBy(Long id) {
         throw new UnsupportedOperationException("Use other method 'loadAll()'");

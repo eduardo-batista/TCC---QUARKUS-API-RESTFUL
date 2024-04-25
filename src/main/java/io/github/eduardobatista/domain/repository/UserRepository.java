@@ -2,6 +2,7 @@ package io.github.eduardobatista.domain.repository;
 
 import java.util.Collection;
 
+import io.github.eduardobatista.domain.entity.Recipe;
 import io.github.eduardobatista.domain.entity.User;
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -27,6 +28,17 @@ public class UserRepository extends BaseRepository<User> {
     public User save(Long userId, User object) {
         getSession().save(object);
         return object;
+    }
+
+    public User likes(Long id, Long recipeId) {
+        var recipe = getSession().load(Recipe.class, recipeId);
+        var user = getSession().load(User.class, id);
+
+        user.getListLikes().add(recipe);
+
+        getSession().save(user);
+
+        return user;
     }
 
     @Override
