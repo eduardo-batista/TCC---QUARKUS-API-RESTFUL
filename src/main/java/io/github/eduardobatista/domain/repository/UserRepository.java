@@ -3,7 +3,10 @@ package io.github.eduardobatista.domain.repository;
 import java.util.Collection;
 
 import io.github.eduardobatista.domain.entity.Recipe;
+import io.github.eduardobatista.domain.entity.Tag;
 import io.github.eduardobatista.domain.entity.User;
+import io.github.eduardobatista.domain.entity.relationships.AbstractRecipeForLikenessRepresentation;
+import io.github.eduardobatista.domain.entity.relationships.Tagged;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
@@ -26,6 +29,7 @@ public class UserRepository extends BaseRepository<User> {
 
     @Override
     public User save(Long userId, User object) {
+        AbstractRecipeForLikenessRepresentation recipe = object.getAbstractRecipeForLikenessRepresentation();
         getSession().save(object);
         return object;
     }
@@ -33,8 +37,30 @@ public class UserRepository extends BaseRepository<User> {
     public User likes(Long id, Long recipeId) {
         var recipe = getSession().load(Recipe.class, recipeId);
         var user = getSession().load(User.class, id);
+        boolean chave = true;
 
         user.getListLikes().add(recipe);
+
+        if (!user.getAbstractRecipeForLikenessRepresentation().getListTags().isEmpty()) {
+            for (Tag tag : recipe.getListTags()) {
+                for (Tagged tagged : user.getAbstractRecipeForLikenessRepresentation().getListTags()) {
+                    if (tag.getId() == tagged.getTag().getId()) {
+                        tagged.incrementAmount();
+                        chave = !chave;
+                    }
+                }
+                if (chave) {
+                    user.getAbstractRecipeForLikenessRepresentation().getListTags()
+                            .add(new Tagged(user.getAbstractRecipeForLikenessRepresentation(), tag));
+                }
+                chave = true;
+            }
+        } else {
+            for (Tag tag : recipe.getListTags()) {
+                user.getAbstractRecipeForLikenessRepresentation().getListTags()
+                        .add(new Tagged(user.getAbstractRecipeForLikenessRepresentation(), tag));
+            }
+        }
 
         getSession().save(user);
 

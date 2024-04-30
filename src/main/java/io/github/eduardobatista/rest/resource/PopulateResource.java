@@ -47,19 +47,19 @@ public class PopulateResource {
         }
 
         // Criar e salvar 5 tags
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             Tag tag = new Tag("TAG " + i);
             tags.add(tagRepository.save(null, tag));
         }
 
         // Criar e salvar 5 receitas
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             Collections.shuffle(tags);
 
             Recipe recipe = new Recipe(
                     faker.food().dish(),
                     faker.lorem().sentence(),
-                    faker.lorem().sentence(),
+                    faker.food().measurement() + " " + faker.food().ingredient(),
                     faker.lorem().paragraph(),
                     null,
                     tags.subList(0, 2));

@@ -11,6 +11,7 @@ import org.neo4j.ogm.annotation.Relationship.Direction;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.github.eduardobatista.domain.entity.relationships.AbstractRecipeForLikenessRepresentation;
 import io.github.eduardobatista.domain.entity.relationships.Follow;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,6 +40,9 @@ public class User extends BaseEntity {
     @Property("administrator")
     private Boolean administrator;
 
+    @Relationship(value = "LIKENESS_REPRESENTATION", direction = Direction.OUTGOING)
+    private AbstractRecipeForLikenessRepresentation abstractRecipeForLikenessRepresentation;
+
     @Relationship(value = "CREATED_BY", direction = Direction.INCOMING)
     private Collection<Recipe> listRecipes;
 
@@ -54,12 +58,6 @@ public class User extends BaseEntity {
     @Relationship(type = "LIKED_BY", direction = Direction.INCOMING)
     private Collection<Recipe> listLikes;
 
-    public Collection<Recipe> getListRecipes() {
-        if (this.listRecipes == null)
-            this.listRecipes = new ArrayList<>();
-        return listRecipes;
-    }
-
     public User(String name, String email, String password, LocalDate birthDate, String picture, String bio,
             String identifier, Boolean administrator) {
         super();
@@ -71,6 +69,16 @@ public class User extends BaseEntity {
         this.bio = bio;
         this.identifier = identifier;
         this.administrator = administrator;
+
+        this.abstractRecipeForLikenessRepresentation = new AbstractRecipeForLikenessRepresentation();
+        this.abstractRecipeForLikenessRepresentation
+                .setName("Abstract Recipe for user likeness representation");
+    }
+
+    public Collection<Recipe> getListRecipes() {
+        if (this.listRecipes == null)
+            this.listRecipes = new ArrayList<>();
+        return listRecipes;
     }
 
     public Collection<RecipeBook> getListRecipeBooks() {
@@ -90,7 +98,7 @@ public class User extends BaseEntity {
             this.listFolloweds = new ArrayList<>();
         return listFolloweds;
     }
-    
+
     public Collection<Recipe> getListLikes() {
         if (this.listLikes == null)
             this.listLikes = new ArrayList<>();
@@ -168,5 +176,5 @@ public class User extends BaseEntity {
             return false;
         return true;
     }
-    
+
 }

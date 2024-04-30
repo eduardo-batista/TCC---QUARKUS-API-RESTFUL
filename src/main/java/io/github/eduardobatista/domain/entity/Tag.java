@@ -7,6 +7,7 @@ import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
 import org.neo4j.ogm.annotation.Relationship.Direction;
 
+import io.github.eduardobatista.domain.entity.relationships.Tagged;
 import jakarta.json.JsonObject;
 import jakarta.json.bind.annotation.JsonbTransient;
 import lombok.Getter;
@@ -27,6 +28,10 @@ public class Tag extends BaseEntity{
     @Relationship(type = "TAGGED_BY", direction = Direction.INCOMING)
     private Collection<Recipe> listRecipes;
     
+    @JsonbTransient
+    @Relationship(type = "ABSTRACT_TAGGED", direction = Direction.INCOMING)
+    private Collection<Tagged> listAbstractRecipes;
+
     @JsonbTransient
     @Relationship(type = "TAGGED_BY", direction = Direction.INCOMING)
     private Collection<RecipeBook> listRecipeBooks;

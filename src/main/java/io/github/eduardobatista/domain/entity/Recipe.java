@@ -2,7 +2,9 @@ package io.github.eduardobatista.domain.entity;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
+import org.neo4j.ogm.annotation.Labels;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
@@ -24,7 +26,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @NodeEntity("recipe")
-public class Recipe extends BaseEntity {
+public class Recipe extends AbstractRecipe {
     @Property(name = "name")
     private String name;
     @Property(name = "description")
@@ -46,7 +48,7 @@ public class Recipe extends BaseEntity {
 
     @Relationship(type = "TAGGED_BY", direction = Direction.OUTGOING)
     private Collection<Tag> listTags;
-    
+
     @Relationship(type = "LIKED_BY", direction = Direction.OUTGOING)
     private Collection<User> listlikers;
 
@@ -82,6 +84,7 @@ public class Recipe extends BaseEntity {
             }
         }
         return new Recipe(object.getString("name"), object.getString("description"), object.getString("ingredients"),
-                object.getString("instructions"), object.containsKey("image")?object.getString("image"):null, listTags);
+                object.getString("instructions"), object.containsKey("image") ? object.getString("image") : null,
+                listTags);
     }
 }
