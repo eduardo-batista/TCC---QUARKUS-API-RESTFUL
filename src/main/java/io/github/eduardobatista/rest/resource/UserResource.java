@@ -18,6 +18,12 @@ public class UserResource extends BaseResource<User, UserService> {
     }
 
     @GET
+    @Path("/{id}/feed")
+    public Response loadFeed(@PathParam("id") Long id) {
+        return Response.ok(service.loadFeed(id)).build();
+    }
+
+    @GET
     @Override
     @Path("/{id}")
     public Response load(@PathParam("id") Long id) {

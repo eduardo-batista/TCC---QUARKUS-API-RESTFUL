@@ -1,15 +1,31 @@
 package io.github.eduardobatista.rest.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
+import io.github.eduardobatista.domain.entity.Recipe;
 import io.github.eduardobatista.domain.entity.User;
 import io.github.eduardobatista.domain.repository.UserRepository;
+import io.github.eduardobatista.rest.dto.RecipeResponse;
 import io.github.eduardobatista.rest.dto.UserResponse;
 
 public class UserService extends BaseService<User, UserResponse, UserRepository> {
 
     public UserService() {
         super(new UserRepository());
+    }
+
+    public Collection<RecipeResponse> loadFeed(Long id) {
+        Collection<RecipeResponse> recipes = new ArrayList<RecipeResponse>();
+        
+        var feed = repository.loadFeed(id);
+
+        feed.forEach(element -> {
+            recipes.add(new RecipeResponse((Recipe) element.get("Recipe2")));
+        });
+
+        return recipes;
     }
 
     @Override

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Data
 public abstract class BaseResponse<T, E> {
     public Long id;

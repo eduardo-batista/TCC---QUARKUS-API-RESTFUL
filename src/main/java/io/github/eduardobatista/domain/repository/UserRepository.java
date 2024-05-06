@@ -1,6 +1,10 @@
 package io.github.eduardobatista.domain.repository;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.neo4j.ogm.model.Result;
 
 import io.github.eduardobatista.domain.entity.Recipe;
 import io.github.eduardobatista.domain.entity.Tag;
@@ -10,6 +14,43 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class UserRepository extends BaseRepository<User> {
+
+    public Iterable<Map<String,Object>> loadFeed(Long id) {
+
+        var user = getSession().load(User.class, id);
+
+        Map<String, Object> parameters = new HashMap<>();
+
+        parameters.put("abstractRecipeId", user.getAbstractRecipeForLikenessRepresentation().getId());
+
+        getSession().query("call gds.graph.drop('tagged_recipes')", parameters);
+
+        getSession().query("CALL gds.graph.project(\r\n" + //
+                "    'tagged_recipes',\r\n" + //
+                "    ['abstract_recipe', 'tag'],\r\n" + //
+                "    {\r\n" + //
+                "        TAGGED_BY: {\r\n" + //
+                "            properties: {\r\n" + //
+                "                amount: {\r\n" + //
+                "                    property: 'amount',\r\n" + //
+                "                    defaultValue: 0.1\r\n" + //
+                "                }\r\n" + //
+                "            }\r\n" + //
+                "        }\r\n" + //
+                "    }\r\n" + //
+                ");", parameters);
+
+        var aux = getSession().query(
+                "CALL gds.nodeSimilarity.filtered.stream('tagged_recipes', {sourceNodeFilter:"+parameters.get("abstractRecipeId")+" , targetNodeFilter:'abstract_recipe' , relationshipWeightProperty: 'amount', similarityMetric: 'COSINE'})\r\n"
+                        + //
+                        "YIELD node1, node2, similarity\r\n" + //
+                        "RETURN gds.util.asNode(node1).name AS Recipe1, gds.util.asNode(node2) AS Recipe2, similarity\r\n"
+                        + //
+                        "ORDER BY similarity DESCENDING, Recipe1, Recipe2",
+                parameters);
+
+        return aux.queryResults();
+    }
 
     @Override
     public User load(Long id) {
