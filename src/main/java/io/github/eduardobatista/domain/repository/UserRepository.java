@@ -5,7 +5,6 @@ import java.util.Collection;
 import io.github.eduardobatista.domain.entity.Recipe;
 import io.github.eduardobatista.domain.entity.Tag;
 import io.github.eduardobatista.domain.entity.User;
-import io.github.eduardobatista.domain.entity.relationships.AbstractRecipeForLikenessRepresentation;
 import io.github.eduardobatista.domain.entity.relationships.Tagged;
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -29,7 +28,6 @@ public class UserRepository extends BaseRepository<User> {
 
     @Override
     public User save(Long userId, User object) {
-        AbstractRecipeForLikenessRepresentation recipe = object.getAbstractRecipeForLikenessRepresentation();
         getSession().save(object);
         return object;
     }
