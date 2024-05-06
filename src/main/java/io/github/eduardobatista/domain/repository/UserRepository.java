@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.neo4j.ogm.model.Result;
-
 import io.github.eduardobatista.domain.entity.Recipe;
 import io.github.eduardobatista.domain.entity.Tag;
 import io.github.eduardobatista.domain.entity.User;

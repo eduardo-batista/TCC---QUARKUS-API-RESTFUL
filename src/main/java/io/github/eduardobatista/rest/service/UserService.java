@@ -2,7 +2,6 @@ package io.github.eduardobatista.rest.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
 
 import io.github.eduardobatista.domain.entity.Recipe;
 import io.github.eduardobatista.domain.entity.User;
