@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  neo4j:
+    image: neo4j:latest
+    ports:
+      - "7474:7474"
+      - "7688:7688"
+    environment:
+      NEO4J_AUTH: neo4j/Coolinary
+      NEO4J_ACCEPT_LICENSE_AGREEMENT: "yes"
+    volumes:
+      - ./data/neo4j:/data
+
+  quarkus-app:
+    build:
+      context: .
+      dockerfile: src/main/docker/Dockerfile.jvm
+    ports:
+      - "8080:8080"
+    environment:
+      - JAVA_OPTS_APPEND=-Dneo4j.uri=bolt://neo4j:7687 -Dneo4j.username=neo4j -Dneo4j.password=Coolinary
+    depends_on:
+      - neo4j
