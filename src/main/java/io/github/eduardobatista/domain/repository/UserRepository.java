@@ -13,7 +13,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class UserRepository extends BaseRepository<User> {
 
-    public Iterable<Map<String,Object>> loadFeed(Long id) {
+    public Iterable<Map<String, Object>> loadFeed(Long id) {
 
         var user = getSession().load(User.class, id);
 
@@ -39,7 +39,9 @@ public class UserRepository extends BaseRepository<User> {
                 ");", parameters);
 
         var aux = getSession().query(
-                "CALL gds.nodeSimilarity.filtered.stream('tagged_recipes', {sourceNodeFilter:"+parameters.get("abstractRecipeId")+" , targetNodeFilter:'abstract_recipe' , relationshipWeightProperty: 'amount', similarityMetric: 'COSINE'})\r\n"
+                "CALL gds.nodeSimilarity.filtered.stream('tagged_recipes', {sourceNodeFilter:"
+                        + parameters.get("abstractRecipeId")
+                        + " , targetNodeFilter:'abstract_recipe' , relationshipWeightProperty: 'amount', similarityMetric: 'COSINE'})\r\n"
                         + //
                         "YIELD node1, node2, similarity\r\n" + //
                         "RETURN gds.util.asNode(node1).name AS Recipe1, gds.util.asNode(node2) AS Recipe2, similarity\r\n"

@@ -11,7 +11,6 @@ import org.neo4j.ogm.annotation.Relationship.Direction;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import io.github.eduardobatista.domain.entity.relationships.AbstractRecipeForLikenessRepresentation;
 import io.github.eduardobatista.domain.entity.relationships.Follow;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

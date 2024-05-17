@@ -5,6 +5,7 @@ import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
+import io.github.eduardobatista.domain.entity.AbstractRecipeForLikenessRepresentation;
 import io.github.eduardobatista.domain.entity.Tag;
 import jakarta.json.bind.annotation.JsonbTransient;
 import lombok.Getter;

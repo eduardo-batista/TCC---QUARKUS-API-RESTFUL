@@ -17,11 +17,13 @@ public class UserService extends BaseService<User, UserResponse, UserRepository>
 
     public Collection<RecipeResponse> loadFeed(Long id) {
         Collection<RecipeResponse> recipes = new ArrayList<RecipeResponse>();
-        
+
         var feed = repository.loadFeed(id);
 
         feed.forEach(element -> {
-            recipes.add(new RecipeResponse((Recipe) element.get("Recipe2")));
+            if (element.get("Recipe2").getClass() == Recipe.class) {
+                recipes.add(new RecipeResponse((Recipe) element.get("Recipe2")));
+            }
         });
 
         return recipes;

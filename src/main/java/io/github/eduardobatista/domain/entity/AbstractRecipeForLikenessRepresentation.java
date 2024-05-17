@@ -1,4 +1,4 @@
-package io.github.eduardobatista.domain.entity.relationships;
+package io.github.eduardobatista.domain.entity;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,7 +8,7 @@ import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
 import org.neo4j.ogm.annotation.Relationship.Direction;
 
-import io.github.eduardobatista.domain.entity.AbstractRecipe;
+import io.github.eduardobatista.domain.entity.relationships.Tagged;
 import lombok.Getter;
 import lombok.Setter;
 
