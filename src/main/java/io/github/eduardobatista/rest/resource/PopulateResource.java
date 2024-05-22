@@ -46,11 +46,16 @@ public class PopulateResource {
             users.add(userRepository.save(null, user));
         }
 
-        // Criar e salvar 5 tags
-        for (int i = 0; i < 10; i++) {
-            Tag tag = new Tag("TAG " + i);
-            tags.add(tagRepository.save(null, tag));
-        }
+        tags.add(tagRepository.save(null, new Tag("Massas")));
+        tags.add(tagRepository.save(null, new Tag("Cozidos")));
+        tags.add(tagRepository.save(null, new Tag("Assados")));
+        tags.add(tagRepository.save(null, new Tag("Fritos")));
+        tags.add(tagRepository.save(null, new Tag("Molhos")));
+        tags.add(tagRepository.save(null, new Tag("Café da Manhã")));
+        tags.add(tagRepository.save(null, new Tag("Jantar")));
+        tags.add(tagRepository.save(null, new Tag("Fitness")));
+        tags.add(tagRepository.save(null, new Tag("Petiscos")));
+        tags.add(tagRepository.save(null, new Tag("Frutos do Mar")));
 
         // Criar e salvar 5 receitas
         for (int i = 0; i < 10; i++) {
@@ -61,7 +66,7 @@ public class PopulateResource {
                     faker.lorem().sentence(),
                     faker.food().measurement() + " " + faker.food().ingredient(),
                     faker.lorem().paragraph(),
-                    null,
+                    "https://www.anamariareceitas.com.br/wp-content/uploads/2022/10/Lasanha-a-bolonhesa.jpg",
                     tags.subList(0, 2));
 
             recipes.add(recipeRepository.save(users.get(0).getId(), recipe));
