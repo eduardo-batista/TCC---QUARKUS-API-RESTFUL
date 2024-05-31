@@ -1,7 +1,7 @@
 package io.github.eduardobatista.rest.resource;
 
 import io.github.eduardobatista.domain.entity.relationships.Follow;
-import io.github.eduardobatista.rest.service.FollowService;
+import io.github.eduardobatista.service.FollowService;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;

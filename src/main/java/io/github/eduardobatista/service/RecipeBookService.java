@@ -1,10 +1,10 @@
-package io.github.eduardobatista.rest.service;
+package io.github.eduardobatista.service;
 
 import java.util.Collection;
 
 import io.github.eduardobatista.domain.entity.RecipeBook;
-import io.github.eduardobatista.domain.repository.RecipeBookRepository;
-import io.github.eduardobatista.rest.dto.RecipeBookResponse;
+import io.github.eduardobatista.dto.RecipeBookResponse;
+import io.github.eduardobatista.repository.RecipeBookRepository;
 
 public class RecipeBookService extends BaseService<RecipeBook, RecipeBookResponse, RecipeBookRepository> {
 

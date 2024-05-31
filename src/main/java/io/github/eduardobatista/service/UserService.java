@@ -1,13 +1,13 @@
-package io.github.eduardobatista.rest.service;
+package io.github.eduardobatista.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import io.github.eduardobatista.domain.entity.Recipe;
 import io.github.eduardobatista.domain.entity.User;
-import io.github.eduardobatista.domain.repository.UserRepository;
-import io.github.eduardobatista.rest.dto.RecipeResponse;
-import io.github.eduardobatista.rest.dto.UserResponse;
+import io.github.eduardobatista.dto.RecipeResponse;
+import io.github.eduardobatista.dto.UserResponse;
+import io.github.eduardobatista.repository.UserRepository;
 
 public class UserService extends BaseService<User, UserResponse, UserRepository> {
 

@@ -1,4 +1,4 @@
-package io.github.eduardobatista.rest.dto;
+package io.github.eduardobatista.dto;
 
 import io.github.eduardobatista.domain.entity.Recipe;
 import lombok.Getter;

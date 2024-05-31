@@ -1,4 +1,4 @@
-package io.github.eduardobatista.domain.repository;
+package io.github.eduardobatista.repository;
 
 import java.util.Collection;
 import java.util.HashMap;

@@ -1,10 +1,11 @@
-package io.github.eduardobatista.rest.dto;
+package io.github.eduardobatista.dto;
 
 import io.github.eduardobatista.domain.entity.relationships.Follow;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 public class FollowResponse extends BaseResponse<FollowResponse, Follow> {
     private UserResponse follower;
     private UserResponse followed;
@@ -14,5 +15,5 @@ public class FollowResponse extends BaseResponse<FollowResponse, Follow> {
         this.follower = new UserResponse(object.getFollower());
         this.followed = new UserResponse(object.getFollowed());
     }
-    
+
 }

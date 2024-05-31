@@ -1,4 +1,4 @@
-package io.github.eduardobatista.rest.dto;
+package io.github.eduardobatista.dto;
 
 import java.util.ArrayList;
 import java.util.Collection;

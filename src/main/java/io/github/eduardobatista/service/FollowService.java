@@ -1,10 +1,10 @@
-package io.github.eduardobatista.rest.service;
+package io.github.eduardobatista.service;
 
 import java.util.Collection;
 
 import io.github.eduardobatista.domain.entity.relationships.Follow;
-import io.github.eduardobatista.domain.repository.FollowRepository;
-import io.github.eduardobatista.rest.dto.FollowResponse;
+import io.github.eduardobatista.dto.FollowResponse;
+import io.github.eduardobatista.repository.FollowRepository;
 
 public class FollowService extends BaseService<Follow, FollowResponse, FollowRepository> {
 

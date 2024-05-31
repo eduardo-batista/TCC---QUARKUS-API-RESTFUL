@@ -1,10 +1,11 @@
-package io.github.eduardobatista.rest.dto;
+package io.github.eduardobatista.dto;
 
 import io.github.eduardobatista.domain.entity.User;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 public class UserResponse extends BaseResponse<UserResponse, User> {
     private String name;
 

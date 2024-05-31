@@ -1,4 +1,4 @@
-package io.github.eduardobatista.rest.database.graph;
+package io.github.eduardobatista.database.graph;
 
 import org.neo4j.ogm.config.Configuration;
 import org.neo4j.ogm.session.SessionFactory;

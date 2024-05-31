@@ -1,7 +1,7 @@
 package io.github.eduardobatista.rest.resource;
 
 import io.github.eduardobatista.domain.entity.RecipeBook;
-import io.github.eduardobatista.rest.service.RecipeBookService;
+import io.github.eduardobatista.service.RecipeBookService;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;

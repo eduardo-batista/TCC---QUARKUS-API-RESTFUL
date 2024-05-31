@@ -1,12 +1,12 @@
-package io.github.eduardobatista.rest.service;
+package io.github.eduardobatista.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
 import io.github.eduardobatista.domain.entity.Recipe;
-import io.github.eduardobatista.domain.repository.ChefBotRepository;
-import io.github.eduardobatista.rest.dto.RecipeResponse;
+import io.github.eduardobatista.dto.RecipeResponse;
+import io.github.eduardobatista.repository.ChefBotRepository;
 import jakarta.inject.Inject;
 
 public class ChefBotService {

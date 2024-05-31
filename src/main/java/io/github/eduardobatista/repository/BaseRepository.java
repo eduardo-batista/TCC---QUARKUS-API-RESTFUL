@@ -1,11 +1,11 @@
-package io.github.eduardobatista.domain.repository;
+package io.github.eduardobatista.repository;
 
 import java.util.Collection;
 
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 
-import io.github.eduardobatista.rest.database.graph.SessionFactoryProducer;
+import io.github.eduardobatista.database.graph.SessionFactoryProducer;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 

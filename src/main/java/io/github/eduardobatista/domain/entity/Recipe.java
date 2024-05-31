@@ -8,7 +8,7 @@ import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
 import org.neo4j.ogm.annotation.Relationship.Direction;
 
-import io.github.eduardobatista.domain.repository.TagRepository;
+import io.github.eduardobatista.repository.TagRepository;
 import jakarta.json.JsonNumber;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonValue;

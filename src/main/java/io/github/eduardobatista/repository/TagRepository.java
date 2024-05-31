@@ -1,10 +1,10 @@
-package io.github.eduardobatista.domain.repository;
+package io.github.eduardobatista.repository;
 
 import java.util.Collection;
 
 import io.github.eduardobatista.domain.entity.Tag;
 
-public class TagRepository extends BaseRepository<Tag>{
+public class TagRepository extends BaseRepository<Tag> {
 
     @Override
     public Tag load(Long id) {

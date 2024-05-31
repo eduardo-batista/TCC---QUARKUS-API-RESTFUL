@@ -1,4 +1,4 @@
-package io.github.eduardobatista.rest.dto;
+package io.github.eduardobatista.dto;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RecipeBookResponse extends BaseResponse<RecipeBookResponse, RecipeBook> {
-    
+
     private String name;
     private String image;
     private LocalDateTime createdAt;
@@ -28,5 +28,5 @@ public class RecipeBookResponse extends BaseResponse<RecipeBookResponse, RecipeB
 
         this.owner = new UserResponse(object.getOwner());
         this.listRecipes = RecipeResponse.collectionResponseProducer(object.getListRecipes(), RecipeResponse.class);
-    } 
+    }
 }

@@ -1,9 +1,9 @@
-package io.github.eduardobatista.rest.service;
+package io.github.eduardobatista.service;
 
 import java.util.Collection;
 
 import io.github.eduardobatista.domain.entity.Tag;
-import io.github.eduardobatista.domain.repository.TagRepository;
+import io.github.eduardobatista.repository.TagRepository;
 
 public class TagService extends BaseService<Tag, Tag, TagRepository> {
 

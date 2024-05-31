@@ -1,7 +1,7 @@
 package io.github.eduardobatista.rest.resource;
 
 import io.github.eduardobatista.domain.entity.Tag;
-import io.github.eduardobatista.rest.service.TagService;
+import io.github.eduardobatista.service.TagService;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;

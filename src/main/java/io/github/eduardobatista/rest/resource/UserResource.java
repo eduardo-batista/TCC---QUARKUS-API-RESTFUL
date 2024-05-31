@@ -1,7 +1,7 @@
 package io.github.eduardobatista.rest.resource;
 
 import io.github.eduardobatista.domain.entity.User;
-import io.github.eduardobatista.rest.service.UserService;
+import io.github.eduardobatista.service.UserService;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
@@ -44,7 +44,7 @@ public class UserResource extends BaseResource<User, UserService> {
 
     @PUT
     @Path("/{id}/likes")
-    public Response likes(@PathParam("id") Long id, @QueryParam("recipeId") Long recipeId){
+    public Response likes(@PathParam("id") Long id, @QueryParam("recipeId") Long recipeId) {
         return Response.ok(service.likes(id, recipeId)).build();
     }
 
